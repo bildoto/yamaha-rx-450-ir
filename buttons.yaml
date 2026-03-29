@@ -1,0 +1,100 @@
+type: vertical-stack
+cards:
+  - type: custom:button-card
+    name: Yamaha RX-450
+    icon: mdi:audio-video
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        name: CD
+        icon: mdi:disc
+        tap_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: cd
+      - type: custom:button-card
+        name: Tuner
+        icon: mdi:radio
+        tap_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: tuner
+      - type: custom:button-card
+        name: Tape
+        icon: mdi:cassette
+        tap_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: tape
+      - type: custom:button-card
+        name: Video
+        icon: mdi:video-input-component
+        tap_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: video
+  - type: horizontal-stack
+    cards:
+      - type: custom:button-card
+        icon: mdi:volume-minus
+        tap_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: vol_down
+            repeats: 2
+            delay_secs: 0.15
+        hold_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: vol_down
+            repeats: 2
+            delay_secs: 0.15
+          repeat: 200
+      - type: custom:button-card
+        icon: mdi:volume-plus
+        tap_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: vol_up
+            repeats: 2
+            delay_secs: 0.15
+        hold_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: vol_up
+            repeats: 2
+            delay_secs: 0.15
+          repeat: 200
+      - type: custom:button-card
+        icon: mdi:power
+        tap_action:
+          action: call-service
+          service: script.send_ir_code
+          service_data:
+            transmitter: remote.sovrum_ir
+            device_name: yamaha_rx450
+            command_name: power
