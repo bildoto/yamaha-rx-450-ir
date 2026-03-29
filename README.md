@@ -21,3 +21,9 @@ data:
 ## Example UI
 
 There is a simple control panel example using `custom:button-card` in `buttons.yaml`.
+
+## Credits
+IR codes from the wonderful lirc database
+```web
+https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/yamaha/RX-450.lircd.conf
+```
