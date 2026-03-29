@@ -29,7 +29,6 @@ send_ir_code:
             tuner_plus: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBITEhMSExITEjgSExITEhMSOBI4EjgSOBITEjgSOBI4Eg0FAAAAAAA="
             tuner_minus: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBI4EhMSExITEjgSExITEhMSExI4EjgSOBITEjgSOBI4Eg0FAAAAAAA="
             tuner_toggle: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBITEjgSExITEjgSExITEhMSOBITEjgSOBITEjgSOBI4Eg0FAAAAAAA="
-
         ir_blob: "{{ ir_codes[device_name][command_name] }}"
 
     - service: remote.send_command
@@ -37,5 +36,5 @@ send_ir_code:
         entity_id: "{{ transmitter }}"
       data:
         command: "{{ ir_blob }}"
-        num_repeats: "{{ repeats }}"
-        delay_secs: "{{ delay_secs }}"
+        num_repeats: "{{ repeats | default(1) | int }}"
+        delay_secs: "{{ delay_secs | default(0.1) | float }}"
