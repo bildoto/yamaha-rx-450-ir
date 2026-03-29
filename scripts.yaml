@@ -1,0 +1,41 @@
+send_ir_code:
+  alias: Send IR code
+  mode: parallel
+  fields:
+    transmitter:
+      required: true
+    device_name:
+      required: true
+    command_name:
+      required: true
+    repeats:
+      required: false
+      default: 1
+    delay_secs:
+      required: false
+      default: 0.1
+
+  sequence:
+    - variables:
+        ir_codes:
+          yamaha_rx450:
+            power: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBI4EjgSOBI4EjgSExITEhMSExITEhMSExITEjgSOBI4Eg0FAAAAAAA="
+            cd: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBI4EhMSOBITEjgSExITEhMSExI4EhMSOBITEjgSOBI4Eg0FAAAAAAA="
+            tuner: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBITEjgSOBITEjgSExITEhMSOBITEhMSOBITEjgSOBI4Eg0FAAAAAAA="
+            video: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBI4EhMSExI4EjgSExITEhMSExI4EjgSExITEjgSOBI4Eg0FAAAAAAA="
+            tape: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBITEhMSExI4EjgSExITEhMSOBI4EjgSExITEjgSOBI4Eg0FAAAAAAA="
+            vol_up: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBITEjgSExI4EjgSExITEhMSOBITEjgSExITEjgSOBI4Eg0FAAAAAAA="
+            vol_down: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBI4EjgSExI4EjgSExITEhMSExITEjgSExITEjgSOBI4Eg0FAAAAAAA="
+            tuner_plus: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBITEhMSExITEjgSExITEhMSOBI4EjgSOBITEjgSOBI4Eg0FAAAAAAA="
+            tuner_minus: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBI4EhMSExITEjgSExITEhMSExI4EjgSOBITEjgSOBI4Eg0FAAAAAAA="
+            tuner_toggle: "b64:JgBHAAABI5USExI4EhMSOBI4EjgSOBITEjgSExI4EhMSExITEhMSOBITEjgSExITEjgSExITEhMSOBITEjgSOBITEjgSOBI4Eg0FAAAAAAA="
+
+        ir_blob: "{{ ir_codes[device_name][command_name] }}"
+
+    - service: remote.send_command
+      target:
+        entity_id: "{{ transmitter }}"
+      data:
+        command: "{{ ir_blob }}"
+        num_repeats: "{{ repeats }}"
+        delay_secs: "{{ delay_secs }}"
