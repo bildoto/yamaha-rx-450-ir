@@ -4,7 +4,7 @@ This document describes a simple way to control a Yamaha RX-450 using a Broadlin
 
 ## Setup
 
-Copy the the contents of `script.yaml` to your `scripts.yaml` file.
+Copy the contents of `scripts.yaml` into your Home Assistant `scripts.yaml` file.
 
 ## Usage
 
@@ -16,3 +16,8 @@ data:
   command_name: vol_up
   repeats: 2
   delay_secs: 0.15
+```
+
+## Example UI
+
+There is a simple control panel example using `custom:button-card` in `buttons.yaml`.
